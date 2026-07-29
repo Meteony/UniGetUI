@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main-fix-web-popup
+      - main-canary
 
 permissions:
   contents: read
