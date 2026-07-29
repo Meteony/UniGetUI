@@ -35,6 +35,9 @@ jobs:
 
       - name: Build portable x64 package
         shell: pwsh
+        env:
+          DOTNET_CLI_USE_MSBUILD_SERVER: 0
+          UseSharedCompilation: false
         run: |
           ./scripts/build.ps1 `
             -Configuration Release `
