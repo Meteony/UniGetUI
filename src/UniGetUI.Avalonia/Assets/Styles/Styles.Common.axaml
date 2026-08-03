@@ -82,8 +82,8 @@
                     <SolidColorBrush x:Key="SettingsCardBackground"      Color="#B3FFFFFF"/>
                     <SolidColorBrush x:Key="SettingsCardBorderBrush"     Color="#ECECEC"/>
                     <SolidColorBrush x:Key="SettingsCardHoverBackground" Color="#F6F6F6"/>
-                    <SolidColorBrush x:Key="SecondaryActionBorderBrush"  Color="#0F000000"/>
-                    <Thickness x:Key="SecondaryActionBorderThickness">0.5</Thickness>
+                    <StaticResource x:Key="SecondaryActionBorderBrush" ResourceKey="ControlElevationBorderBrush"/>
+                    <Thickness x:Key="SecondaryActionBorderThickness">1</Thickness>
                     <!-- WinUI dropdown controls use the same control/card fill as settings actions. -->
                     <StaticResource x:Key="ComboBoxBackground" ResourceKey="SettingsCardBackground"/>
                     <StaticResource x:Key="ComboBoxBackgroundUnfocused" ResourceKey="SettingsCardBackground"/>
