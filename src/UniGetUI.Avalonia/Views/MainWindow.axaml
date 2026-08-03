@@ -17,35 +17,6 @@
         MinWidth="700"
         MinHeight="500">
     <Window.Styles>
-        <Style Selector="Border#GlobalSearchContainer">
-            <Setter Property="Background" Value="{DynamicResource SearchBoxInactiveBackground}"/>
-        </Style>
-        <!-- Global search box focus: a WinUI-style accent underline that spans the whole box
-             (field + button) along the bottom, instead of recoloring the entire border. Toggled
-             via styles (opacity) so the .focus-within setter wins over the base. -->
-        <Style Selector="Border#SearchFocusUnderline">
-            <Setter Property="Opacity" Value="0"/>
-            <Setter Property="Background" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
-            <Setter Property="Transitions">
-                <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.12"/>
-                </Transitions>
-            </Setter>
-        </Style>
-        <!-- Hover: subtle neutral underline (WinUI shows a lighter line on pointer-over). -->
-        <Style Selector="Border#GlobalSearchContainer:pointerover Border#SearchFocusUnderline">
-            <Setter Property="Opacity" Value="1"/>
-            <Setter Property="Background" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
-        </Style>
-        <!-- Focus: accent underline (declared after hover so it wins when both apply). -->
-        <Style Selector="Border#GlobalSearchContainer:focus-within Border#SearchFocusUnderline">
-            <Setter Property="Opacity" Value="1"/>
-            <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
-        </Style>
-        <Style Selector="Border#GlobalSearchContainer:focus-within">
-            <Setter Property="Background" Value="{DynamicResource SearchBoxFocusedBackground}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource SearchBoxFocusedBorderBrush}"/>
-        </Style>
         <!-- Nav flyout cross-fade. The flyout's icons sit exactly over the static rail's icons, so
              fading (rather than sliding) keeps the icons perfectly aligned — only the labels fade
              in/out, reading as a clean expand/collapse with no second nav appearing and no gap.
@@ -533,6 +504,7 @@
                  corners and shares a single accent focus border (see Window.Styles). -->
             <Border Grid.Column="1"
                     x:Name="GlobalSearchContainer"
+                    Classes="search-field-container"
                     VerticalAlignment="Center"
                     Margin="0,0,40,0"
                     Height="32"
@@ -543,6 +515,7 @@
                 <Panel>
                     <Grid ColumnDefinitions="320,38">
                         <TextBox x:Name="GlobalSearchBox"
+                                 Classes="search-field-editor"
                                  Grid.Column="0"
                                  MinHeight="20"
                                  FontSize="14"
@@ -557,20 +530,7 @@
                                  automation:AutomationProperties.Name="{Binding GlobalSearchPlaceholder}"
                                  automation:AutomationProperties.AcceleratorKey="Ctrl+F"
                                  Text="{Binding GlobalSearchText}"
-                                 KeyDown="SearchBox_KeyDown">
-                            <!-- Suppress the TextBox's own focus underline AND its focused/hover
-                                 background swap (which otherwise turns the field black on focus while
-                                 the button keeps the container fill). The container owns the fill and
-                                 the focus highlight (SearchFocusUnderline) instead. -->
-                            <TextBox.Resources>
-                                <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
-                                <SolidColorBrush x:Key="TextControlBackground" Color="Transparent"/>
-                                <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent"/>
-                                <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Transparent"/>
-                                <!-- Fluent dims placeholders to 0.5; WinUI showed them at full secondary-text brightness. -->
-                                <x:Double x:Key="TextControlPlaceholderOpacity">1</x:Double>
-                            </TextBox.Resources>
-                        </TextBox>
+                                 KeyDown="SearchBox_KeyDown"/>
                         <!-- Clear (✕): overlays the right edge of the text column, shown only when
                              the box has text; the TextBox's right padding reserves room for it. -->
                         <Button Grid.Column="0"
@@ -609,6 +569,7 @@
                     </Grid>
                     <!-- WinUI focus underline: 2px accent line across the bottom of the whole box -->
                     <Border x:Name="SearchFocusUnderline"
+                            Classes="search-field-underline"
                             VerticalAlignment="Bottom"
                             Height="2"
                             Margin="1,0,1,0"
