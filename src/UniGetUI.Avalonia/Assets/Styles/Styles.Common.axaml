@@ -43,6 +43,8 @@
                     <SolidColorBrush x:Key="SearchBoxInactiveBackground"      Color="#B3FFFFFF"/>
                     <SolidColorBrush x:Key="SearchBoxFocusedBackground"       Color="#FFFFFFFF"/>
                     <SolidColorBrush x:Key="SearchBoxFocusedBorderBrush"      Color="#0F000000"/>
+                    <SolidColorBrush x:Key="SearchFieldBorderBrush"           Color="#0F000000"/>
+                    <Thickness x:Key="SearchFieldBorderThickness">0.5</Thickness>
                     <!-- Opaque package-details layers remain distinct even when the dialog uses Mica. -->
                     <SolidColorBrush x:Key="InstallOptionsSectionBackground" Color="#F2F2F2"/>
                     <SolidColorBrush x:Key="InstallOptionsTabSelectedBackground" Color="#E0E0E0"/>
@@ -171,6 +173,8 @@
                     <SolidColorBrush x:Key="SearchBoxInactiveBackground"      Color="#0FFFFFFF"/>
                     <SolidColorBrush x:Key="SearchBoxFocusedBackground"       Color="#B31E1E1E"/>
                     <SolidColorBrush x:Key="SearchBoxFocusedBorderBrush"      Color="#12FFFFFF"/>
+                    <SolidColorBrush x:Key="SearchFieldBorderBrush"           Color="Transparent"/>
+                    <Thickness x:Key="SearchFieldBorderThickness">1</Thickness>
                     <!-- Opaque package-details layers remain distinct even when the dialog uses Mica. -->
                     <SolidColorBrush x:Key="InstallOptionsSectionBackground" Color="#393939"/>
                     <SolidColorBrush x:Key="InstallOptionsTabSelectedBackground" Color="#4A4A4A"/>
@@ -754,8 +758,8 @@
          the same contract through the template below. -->
     <Style Selector="Border.search-field-container">
         <Setter Property="Background" Value="{DynamicResource SearchBoxInactiveBackground}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SearchFieldBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SearchFieldBorderThickness}"/>
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="ClipToBounds" Value="True"/>
     </Style>
@@ -799,8 +803,8 @@
          Fluent's full-rectangle focused border. -->
     <Style Selector="TextBox.search-field-standalone">
         <Setter Property="Background" Value="{DynamicResource SearchBoxInactiveBackground}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SearchFieldBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource SearchFieldBorderThickness}"/>
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="ClipToBounds" Value="True"/>
         <Setter Property="FocusAdorner" Value="{x:Null}"/>
