@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v7
+        with:
+          repository: Devolutions/UniGetUI
+          ref: 5bb8224f23e061786a280845c6adb0e5444ba49e
 
       - name: Install repository .NET SDK
         uses: actions/setup-dotnet@v6
