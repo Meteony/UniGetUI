@@ -2,6 +2,9 @@ name: Build unsigned Windows x64
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - private/unsigned-windows-x64-workflow
 
 permissions:
   contents: read
